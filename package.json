@@ -12,6 +12,9 @@
     "lint": "eslint './**/*.js'",
     "test": "mocha \"./test/unit/**/*.js\""
   },
+  "bin": {
+    "cht-data-helper": "src/bin/index.js"
+  },
   "devDependencies": {
     "@medic/eslint-config": "^1.1.0",
     "chai": "^4.3.7",

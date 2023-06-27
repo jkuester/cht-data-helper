@@ -5,7 +5,7 @@ const { purgeReportsAsOfDate } = require('../lib/purge');
 const printUsage = () => {
   console.log(`
 NAME
-  cht-data-helper - Helper script for reviewing configuration when upgrading the CHT
+  cht-data-helper - Helper utility for managing data in a CHT instance.
 
 SYNOPSIS
   cht-data-helper <action> <category> <flags>
