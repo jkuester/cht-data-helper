@@ -1,0 +1,25 @@
+{
+  "name": "cht-data-helper",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jkuester/cht-data-helper.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "lint": "eslint './**/*.js'",
+    "test": "mocha \"./test/unit/**/*.js\""
+  },
+  "bin": {
+    "cht-data-helper": "src/bin/index.js"
+  },
+  "devDependencies": {
+    "@medic/eslint-config": "^1.1.0",
+    "chai": "^4.3.7",
+    "eslint": "^8.43.0",
+    "mocha": "^10.2.0",
+    "sinon": "^15.2.0"
+  }
+}
