@@ -1,0 +1,12 @@
+{
+  "extends": "@medic",
+  "env": {
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+    "no-console": "off"
+  }
+}
