@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const tui = require('../lib/tui');
-const { purgeReportsAsOfDate } = require('../lib/purge');
+const { purgeReportsAsOfDate, purgePatientsAsOfDate } = require('../lib/purge');
 
 const printUsage = () => {
   console.log(`
@@ -15,20 +15,23 @@ ACTIONS
 
 CATEGORIES
   reports - Perform action on reports
+  patients - Perform action on contacts with 'patient' role
   
 FLAGS
-  -d, --date <date> - Date to use for the action  
+  -d, --date <date> - Date to use for the action
+  -t, --type <type> - Type of contact/patient to purge (default: 'person')
 `);
 };
 
 const getFlags = (args) => {
   const flags = {};
   for (let i = 0; i < args.length; i += 2) {
-    console.log(args[i]);
     const flag = args[i];
     const value = args[i + 1];
     if (['-d', '--date'].includes(flag)) {
       flags.date = value;
+    } else if (['-t', '--type'].includes(flag)) {
+      flags.type = value;
     } else {
       throw new Error(`Unknown flag: ${flag}`);
     }
@@ -61,6 +64,10 @@ const parseArgs = (args) => {
     if (cmdArgs.action === 'purge') {
       if (cmdArgs.category === 'reports') {
         await purgeReportsAsOfDate(cmdArgs.flags.date);
+        return;
+      }
+      if (cmdArgs.category === 'patients') {
+        await purgePatientsAsOfDate(cmdArgs.flags.date, cmdArgs.flags.type);
         return;
       }
     }

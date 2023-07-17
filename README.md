@@ -24,9 +24,11 @@ ACTIONS
 
 CATEGORIES
   reports - Perform action on reports
+  patients - Perform action on contacts with 'patient' role
   
 FLAGS
-  -d, --date <date> - Date to use for the action  
+  -d, --date <date> - Date to use for the action
+  -t, --type <type> - Type of contact/patient to purge (default: 'person')
 ```
 
 Requires a `COUCH_URL` environment variable to be set. This can be done globally, in an `.env` file, or by setting it as a part of the command.
