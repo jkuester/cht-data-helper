@@ -4,8 +4,8 @@ import { NodeContext, NodeRuntime, NodeHttpClient } from "@effect/platform-node"
 import { HttpClient, HttpClientRequest, HttpClientResponse } from "@effect/platform"
 import { Console, Effect } from "effect";
 import { LocalSystemDataService, LocalSystemDataServiceImpl } from './local-system-data.service';
-import { EnvironmentServiceImpl } from './environment.service';
 import * as Layer from "effect/Layer"
+import { CouchServiceLive } from './couch.service';
 
 const getCouchServiceData = Effect.flatMap(
   LocalSystemDataService,
@@ -32,7 +32,7 @@ const cli = Command.run(command, {
 // Prepare and run the CLI application
 cli(process.argv).pipe(
   Effect.provide(NodeContext.layer),
-  // Effect.provide(EnvironmentServiceImpl),
+  Effect.provide(CouchServiceLive),
   Effect.provide(LocalSystemDataServiceImpl),
   NodeRuntime.runMain
 )
