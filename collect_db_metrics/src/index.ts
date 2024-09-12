@@ -3,9 +3,10 @@ import { Command } from "@effect/cli";
 import { NodeContext, NodeRuntime, NodeHttpClient } from "@effect/platform-node";
 import { HttpClient, HttpClientRequest, HttpClientResponse } from "@effect/platform"
 import { Console, Effect } from "effect";
-import { LocalSystemDataService, LocalSystemDataServiceImpl } from './local-system-data.service';
+import { LocalSystemDataService, LocalSystemDataServiceLive } from './local-system-data.service';
 import * as Layer from "effect/Layer"
 import { CouchServiceLive } from './couch.service';
+import { DbsInfoService, DbsInfoServiceLive } from './dbs-info.service';
 
 const getCouchServiceData = Effect.flatMap(
   LocalSystemDataService,
@@ -15,11 +16,11 @@ const getCouchServiceData = Effect.flatMap(
 // Define the top-level command  Effect<void, unknown, unknown>
 const command = Command.make("index", {}, () => getCouchServiceData.pipe(
   Effect.tap(Console.log),
-  // Effect.andThen(EnvironmentService),
+  Effect.andThen(DbsInfoService),
   // x => x,
-  // Effect.map(envService => envService.get()),
-  // x => x,
-  // Effect.tap(Console.log),
+  Effect.flatMap(dbsInfoService => dbsInfoService.get()),
+  x => x,
+  Effect.tap(Console.log),
   x => x
 ));
 
@@ -33,6 +34,7 @@ const cli = Command.run(command, {
 cli(process.argv).pipe(
   Effect.provide(NodeContext.layer),
   Effect.provide(CouchServiceLive),
-  Effect.provide(LocalSystemDataServiceImpl),
+  Effect.provide(LocalSystemDataServiceLive),
+  Effect.provide(DbsInfoServiceLive),
   NodeRuntime.runMain
 )

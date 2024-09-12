@@ -23,7 +23,8 @@ interface LocalSystemDataService {
 }
 
 export const LocalSystemDataService = Context.GenericTag<LocalSystemDataService>(
-  "collect_db_metrics/src/LocalSystemDataService");
+  "collect_db_metrics/src/LocalSystemDataService"
+);
 
 const createCouchSystemService = CouchService.pipe(
   Effect.map(couch => LocalSystemDataService.of({
@@ -33,6 +34,6 @@ const createCouchSystemService = CouchService.pipe(
   })),
 );
 
-export const LocalSystemDataServiceImpl = Layer
+export const LocalSystemDataServiceLive = Layer
   .effect(LocalSystemDataService, createCouchSystemService)
   .pipe(Layer.provide(CouchServiceLive));
