@@ -2,7 +2,6 @@
 import { Command } from '@effect/cli';
 import { NodeContext, NodeRuntime } from '@effect/platform-node';
 import { Console, Effect, pipe } from 'effect';
-import packageJson from '../package.json';
 
 const chtx = Command.make('chtx', {}, () => pipe(
   'Hello world!',
@@ -12,7 +11,7 @@ const chtx = Command.make('chtx', {}, () => pipe(
 const cli = Command.run(chtx, {
   name: 'CHT Toolbox',
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
-  version: packageJson.version
+  version: 'packageJson.version'
 });
 
 // Prepare and run the CLI application
