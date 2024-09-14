@@ -8,22 +8,6 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "files": [
-    ".devcontainer",
-    "dist",
-    "node_modules",
-    "src",
-    "test",
-    ".eslintrc",
-    ".gitignore",
-    ".npmrc",
-    "LICENSE",
-    "README.md",
-    "package.json",
-    "package-lock.json",
-    "tsconfig.build.json",
-    "tsconfig.json"
-  ],
   "scripts": {
     "prepare": "npm run prepack",
     "build": "tsc -p tsconfig.build.json && chmod +x dist/index.js",
