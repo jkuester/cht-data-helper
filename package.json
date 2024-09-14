@@ -8,8 +8,11 @@
   "engines": {
     "node": ">=18.0.0"
   },
+  "files": [
+    "."
+  ],
   "scripts": {
-    "prepare": "npm install",
+    "preparee": "npm run build",
     "build": "tsc -p tsconfig.build.json && chmod +x dist/index.js",
     "lint": "eslint './**/*.js'",
     "test": "mocha \"./test/unit/**/*.js\""
