@@ -9,6 +9,8 @@
     "node": ">=18.0.0"
   },
   "scripts": {
+    "prepare": "rm -rf dist && npm run build",
+    "build": "tsc -p tsconfig.build.json && chmod +x dist/index.js",
     "lint": "eslint './**/*.js'",
     "test": "mocha \"./test/unit/**/*.js\""
   },
