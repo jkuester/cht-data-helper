@@ -1,5 +1,9 @@
 # cht-data-helper
 
+## ⚠️ Archived ⚠️
+
+The functionality from this repository has been migrated to [CHToolbox](https://github.com/jkuester/chtoolbox).  The `chtx doc purge...` command can now be used for purging docs/contact/reports from a Couch database.
+
 Requires NodeJS `18+`.
 
 ## Installation
